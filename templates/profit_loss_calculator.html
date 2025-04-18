@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profit and Loss Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333333;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Profit and Loss Calculator</h2>
+        <form id="profitLossForm">
+            <input type="number" id="costPrice" placeholder="Enter Cost Price (CP)" required><br>
+            <input type="number" id="sellingPrice" placeholder="Enter Selling Price (SP)" required><br>
+            <button type="button" onclick="calculateProfitLoss()">Calculate</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateProfitLoss() {
+            const cp = parseFloat(document.getElementById('costPrice').value);
+            const sp = parseFloat(document.getElementById('sellingPrice').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(cp) || isNaN(sp)) {
+                resultDiv.innerHTML = "Please enter valid numbers for both Cost Price and Selling Price.";
+                return;
+            }
+
+            if (sp > cp) {
+                const profit = sp - cp;
+                const profitPercentage = (profit / cp) * 100;
+                resultDiv.innerHTML = `Profit: Rs. ${profit.toFixed(2)} (${profitPercentage.toFixed(2)}%)`;
+                resultDiv.style.color = "green";
+            } else if (cp > sp) {
+                const loss = cp - sp;
+                const lossPercentage = (loss / cp) * 100;
+                resultDiv.innerHTML = `Loss: Rs. ${loss.toFixed(2)} (${lossPercentage.toFixed(2)}%)`;
+                resultDiv.style.color = "red";
+            } else {
+                resultDiv.innerHTML = "No Profit, No Loss.";
+                resultDiv.style.color = "black";
+            }
+        }
+    </script>
+</body>
+</html>

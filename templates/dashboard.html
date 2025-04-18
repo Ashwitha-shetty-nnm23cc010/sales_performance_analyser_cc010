@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .welcome-container {
+            margin-top: 50px;
+        }
+        .welcome-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .quote {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .proceed-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .proceed-button:hover {
+            background-color: #45a049;
+        }
+        .actions, .sales-data {
+            display: none; /* Initially hidden */
+            margin-top: 30px;
+        }
+        .actions a {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 5px;
+            display: inline-block;
+        }
+        .actions a:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #cccccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Section -->
+    <div class="welcome-container">
+        <img src="/static/images/sales.jpg" alt="Sales performance analyzer">
+        <div class="quote">"The best way to predict the future is to create it." - Peter Drucker</div>
+        <button class="proceed-button" onclick="showDashboard()">Proceed</button>
+    </div>
+
+    <!-- Dashboard Options -->
+    <div class="actions">
+        <a href="/add-sale">Add Sale</a>
+        <a href="/export">Export CSV</a>
+        <a href="/region-sales">Region-Wise Sales</a>
+        <a href="/profit-loss-calculator">Analyzer</a>
+        <a href="/sales-by-salesperson">Sales by Salesperson</a>
+        <a href="/profit-loss-history">Profit and Loss History</a>
+        <a href="/products">Manage Products</a>
+        <a href="/regions">Manage Regions</a>
+        <a href="/salespersons">Manage Salespersons</a>
+        <a href="/feedback-list"> Feedback</a>
+        <a href="/feedback">Contack us</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <!-- Sales Data -->
+    <div class="sales-data">
+        <h3>Sales Data</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Region</th>
+                    <th>Salesperson</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in sales %}
+                <tr>
+                    <td>{{ sale['id'] }}</td>
+                    <td>{{ sale['product_name'] }}</td>
+                    <td>{{ sale['quantity'] }}</td>
+                    <td>{{ sale['price'] }}</td>
+                    <td>{{ sale['total'] }}</td>
+                    <td>{{ sale['region'] }}</td>
+                    <td>{{ sale['salesperson'] }}</td>
+                    <td>{{ sale['sale_date'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

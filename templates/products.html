@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333333;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .form-container input, .form-container textarea, .form-container button {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #cccccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Manage Products</h2>
+    <div class="form-container">
+        <form method="POST">
+            <input type="text" name="name" placeholder="Product Name" required>
+            <textarea name="description" placeholder="Description"></textarea>
+            <input type="number" name="price" placeholder="Price" required>
+            <input type="number" name="stock" placeholder="Stock" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+    {% if error %}
+    <div style="color: red;">{{ error }}</div>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product['id'] }}</td>
+                <td>{{ product['name'] }}</td>
+                <td>{{ product['description'] }}</td>
+                <td>{{ product['price'] }}</td>
+                <td>{{ product['stock'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

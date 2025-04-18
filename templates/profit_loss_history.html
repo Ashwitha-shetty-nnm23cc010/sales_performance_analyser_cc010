@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profit and Loss History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333333;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .form-container input, .form-container button {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #cccccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Profit and Loss History</h2>
+    <div class="form-container">
+        <form method="POST">
+            <input type="number" name="cost_price" placeholder="Cost Price" required>
+            <input type="number" name="selling_price" placeholder="Selling Price" required>
+            <button type="submit">Calculate and Save</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cost Price</th>
+                <th>Selling Price</th>
+                <th>Profit/Loss Amount</th>
+                <th>Profit/Loss Percentage</th>
+                <th>Calculated At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in profit_loss_records %}
+            <tr>
+                <td>{{ record['id'] }}</td>
+                <td>{{ record['cost_price'] }}</td>
+                <td>{{ record['selling_price'] }}</td>
+                <td>{{ record['profit_loss_amount'] }}</td>
+                <td>{{ record['profit_loss_percentage'] }}</td>
+                <td>{{ record['calculated_at'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
