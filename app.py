@@ -253,13 +253,7 @@ def salespersons():
             "INSERT INTO salespersons (name, email, phone) VALUES (%s, %s, %s)",
             (name, email, phone)
         )
-        conn.commit()
-    cursor.execute("SELECT * FROM salespersons")
-    salespersons = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template('salespersons.html', salespersons=salespersons)
-        conn.commit()
+        conn.commit()  # Commit the transaction here
     cursor.execute("SELECT * FROM salespersons")
     salespersons = cursor.fetchall()
     cursor.close()
