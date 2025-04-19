@@ -259,6 +259,12 @@ def salespersons():
     cursor.close()
     conn.close()
     return render_template('salespersons.html', salespersons=salespersons)
+        conn.commit()
+    cursor.execute("SELECT * FROM salespersons")
+    salespersons = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('salespersons.html', salespersons=salespersons)
 
 @app.route('/feedback-list', methods=['GET', 'POST'])
 def feedback_list():
