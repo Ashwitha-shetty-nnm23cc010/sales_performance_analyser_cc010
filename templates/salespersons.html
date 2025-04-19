@@ -56,10 +56,12 @@
 <body>
     <h2>Manage Salespersons</h2>
     <div class="form-container">
-        <input type="text" name="name" placeholder="Salesperson Name" required>
-        <input type="email" name="email" placeholder="Email">
-        <input type="text" name="phone" placeholder="Phone">
-        <button type="submit">Add Salesperson</button>
+       <form action="/salespersons" method="POST">
+    <input type="text" name="name" placeholder="Salesperson Name" required>
+    <input type="email" name="email" placeholder="Email">
+    <input type="text" name="phone" placeholder="Phone">
+    <button type="submit">Add Salesperson</button>
+</form>
     </div>
     <table>
         <thead>
